@@ -6,8 +6,21 @@
   <title>Comic - Webcomic</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Rubik+Moonrocks&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Rubik+Moonrocks&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <style>
+    /* Only new styles — rocket-specific */
+    .rocket {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 156px; /* set to match your design */
+      width: auto; 
+      z-index: 10;
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -15,20 +28,36 @@
     <a href="comic.html" class="active">Comic</a>
     <a href="about.html">About</a>
   </nav>
-  <main>
 
-  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3RznzRnsl8mzP63l4AF2M7?utm_source=generator" width="100%" height="180" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
-    <p>
-      Please press play before scrolling.
-    </p>
-    <div>
-      
-    </div>
+  <main>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3RznzRnsl8mzP63l4AF2M7?utm_source=generator" width="100%" height="180" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
+    <p>Please press play before scrolling.</p>
+
     <div class="comic-container">
-      <img src="https://cdn.glitch.global/5a4f6b58-3584-4628-a4c8-132f67aa3ffb/row-1-column-1.png?v=1745512281818" alt="Co" class="comic-page"/>
-      <img src="https://cdn.glitch.global/5a4f6b58-3584-4628-a4c8-132f67aa3ffb/row-2-column-1.png?v=1745512280130" alt="Co" class="comic-page"/>
-      
+      <img id="img1" src="https://cdn.glitch.global/5a4f6b58-3584-4628-a4c8-132f67aa3ffb/row-1-column-1.png?v=1745512281818" alt="Comic Page 1" class="comic-page"/>
+      <img id="img2" src="https://cdn.glitch.global/5a4f6b58-3584-4628-a4c8-132f67aa3ffb/row-2-column-1.png?v=1745512280130" alt="Comic Page 2" class="comic-page"/>
     </div>
+
+    <img src="images/Asset 1.png" alt="Rocket" class="rocket" id="rocket" />
   </main>
+
+  <script>
+    const rocket = document.getElementById('rocket');
+    const img2 = document.getElementById('img2');
+
+    window.addEventListener('scroll', () => {
+      const rect = img2.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      const start = windowHeight * (1/24);
+      const end = windowHeight * 0.25;
+
+      if (rect.top < start && rect.bottom > end) {
+        rocket.style.display = 'block';
+      } else {
+        rocket.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
